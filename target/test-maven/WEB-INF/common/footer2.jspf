@@ -1,0 +1,37 @@
+<%@ page pageEncoding="UTF-8" %>
+<div id="footer_all" style="height: 160px">
+
+        <div class="container">
+            <ul class="footer2_ul">
+                <li><a href="/about/us" target="_blank">关于我们</a></li>
+                <li><a href="/articles-PUBLICATION/1/6" target="_blank">新闻公告</a></li>
+                <li><a href="/investEdu-FINANCIALKNOWLEDGE/1/8" target="_blank">投资者教育</a></li>
+                <li><a href="/about/us/DisclaimerSm" target="_blank">免责声明</a></li>
+                <li><a href="/about/us/PrivacyTk" target="_blank">隐私条款</a></li>
+                <li style="border-right:none;"><a href="/about/us/ContactUs" target="_blank">联系我们</a></li>
+                <div class="clearfix"></div>
+            </ul>
+        </div>
+    <!--Foot Ends-->
+    <footer id="footer" style="height: 44px">
+        <!-- Container -->
+        <div class="container text-center" style="padding-top: 25px;margin-top: 40px;">
+            © ${year} udrmb.com &nbsp;&nbsp; All Rights Reserved &nbsp; 北京紫貔网络科技有限公司&nbsp;&nbsp; |&nbsp;&nbsp; 京ICP备14046327号
+
+            <div class="clearfix"></div>
+        </div>
+    </footer>
+</div>
+
+<!-- Scripts -->
+<script type="text/javascript">
+    var __html5 = document.createElement("canvas").getContext ? true : false;
+    if (!__html5) {
+        document.write('<scri' + 'pt src="//cdn.bootcss.com/json2/20150503/json2.min.js" type="text/javascript"></scri' + 'pt>');
+        document.write('<scri' + 'pt src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js" type="text/javascript"></scri' + 'pt>');
+    }
+    else {
+        document.write('<scri' + 'pt src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js?forapp=1" type="text/javascript"></scri' + 'pt>');
+    }
+</script>
+<script src="/assets/js/app.js"></script>

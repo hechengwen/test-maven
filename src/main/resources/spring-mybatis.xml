@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/tx
+                        http://www.springframework.org/schema/tx/spring-tx.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/aop
+                        http://www.springframework.org/schema/aop/spring-aop.xsd"
+                        >
+
+    <!-- 引入配置文件 -->
+    <!--<bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:jdbc.properties" />
+    </bean>-->
+    <!-- 引入配置文件 -->
+    <!--<bean id="propertiesFactoryBean" class="org.springframework.beans.factory.config.PropertiesFactoryBean">-->
+        <!--<property name="locations">-->
+            <!--<list>-->
+                <!--<value>classpath:jdbc.properties</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!--<bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+        <!--<property name="properties" ref="propertiesFactoryBean" />-->
+    <!--</bean>-->
+
+    <!-- ignore-unresolvable="是否忽略解析不到的属性，如果不忽略，找不到将抛出异常"   -->
+    <!-- 加载数据库连接的资源文件 -->
+    <context:property-placeholder location="classpath:jdbc.properties" ignore-unresolvable="true"/>
+
+    <!-- 动态数据源 -->
+    <bean id="dataSource_master" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url.master}" />
+        <property name="username" value="${jdbc.username.master}" />
+        <property name="password" value="${jdbc.password.master}" />
+        <!-- 初始化连接大小 -->
+        <property name="initialSize" value="${initialSize}"></property>
+        <!-- 连接池最大数量 -->
+        <property name="maxActive" value="${maxActive}"></property>
+        <!-- 连接池最大空闲 -->
+        <property name="maxIdle" value="${maxIdle}"></property>
+        <!-- 连接池最小空闲 -->
+        <property name="minIdle" value="${minIdle}"></property>
+        <!-- 获取连接最大等待时间 -->
+        <property name="maxWait" value="${maxWait}"></property>
+    </bean>
+
+    <bean id="dataSource_slave" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url.slave}" />
+        <property name="username" value="${jdbc.username.slave}" />
+        <property name="password" value="${jdbc.password.slave}" />
+        <!-- 初始化连接大小 -->
+        <property name="initialSize" value="${initialSize}"></property>
+        <!-- 连接池最大数量 -->
+        <property name="maxActive" value="${maxActive}"></property>
+        <!-- 连接池最大空闲 -->
+        <property name="maxIdle" value="${maxIdle}"></property>
+        <!-- 连接池最小空闲 -->
+        <property name="minIdle" value="${minIdle}"></property>
+        <!-- 获取连接最大等待时间 -->
+        <property name="maxWait" value="${maxWait}"></property>
+    </bean>
+
+    <!--  spring动态数据源     -->
+    <bean id="dynamicDataSource" class="com.cn.hcw.datasource.DynamicDataSource">
+        <!-- 通过key-value关联数据源 -->
+        <property name="targetDataSources">
+            <map>
+                <entry key="dataSource_master" value-ref="dataSource_master"></entry>
+                <entry key="dataSource_slave" value-ref="dataSource_slave"></entry>
+            </map>
+        </property>
+    </bean>
+
+    <!-- 已经使用注解的方式实现 -->
+    <!--<bean id="dataSourceInterceptor" class="com.cn.hcw.datasource.DataSourceInterceptor" />
+
+    <aop:config>
+        <aop:pointcut id="slave" expression="execution(* mapper.slave.*.*(..))"></aop:pointcut>
+        <aop:pointcut id="master" expression="execution(* mapper.*.*(..))"></aop:pointcut>
+        <aop:aspect id="dataSourceAspect" ref="dataSourceInterceptor" >
+            <aop:before pointcut-ref="slave" method="setdataSourceSlave" />
+            <aop:before pointcut-ref="master" method="setdataSourceMaster" />
+            <aop:after pointcut-ref="slave" method="clearCustomerType" />
+            <aop:after pointcut-ref="master" method="clearCustomerType" />
+        </aop:aspect>
+    </aop:config>-->
+
+    <!-- 配置redis 缓存服务器 -->
+    <!--<bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="hostName" value="${redis.host}"/>
+        <property name="port" value="${redis.port}"/>
+        <property name="timeout" value="2000"/>
+        &lt;!&ndash; <property name="password" value="${redis.password}"/> &ndash;&gt;
+    </bean>-->
+
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+        <constructor-arg index="0">
+            <ref bean="jedisPoolConfig"/>
+        </constructor-arg>
+        <constructor-arg index="1" value="${redis.host}"/>
+        <constructor-arg index="2" value="${redis.port}"/>
+        <constructor-arg index="3" value="20000"/>
+    </bean>
+    <bean id="jedisPoolConfig" class="org.apache.commons.pool2.impl.GenericObjectPoolConfig">
+        <!--最大连接数-->
+        <property name="maxTotal" value="1000" />
+        <!--最大空闲连接数-->
+        <property name="maxIdle" value="1000" />
+        <!--初始化连接数-->
+        <property name="minIdle" value="100"/>
+        <!--最大等待时间-->
+        <property name="maxWaitMillis" value="20000" />
+        <!--定时对线程池中空闲的链接进行validateObject校验-->
+        <property name="testWhileIdle" value="true" />
+    </bean>
+
+    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dynamicDataSource" />
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!-- 自动扫描mapping.xml文件 -->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+    </bean>
+
+    <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.cn.hcw.dao" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    </bean>
+
+    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dynamicDataSource" />
+    </bean>
+
+    <!-- 支持事务注解 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!-- 通知 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!-- 传播行为 -->
+            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="insert*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- 配置aop  -->
+    <aop:config>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.cn.hcw.service.impl.*.*(..))"/>
+    </aop:config>
+
+    <bean id="testAspect" class="com.cn.hcw.aspect.TestAspect" />
+
+    <aop:config>
+        <aop:pointcut id="pointcut" expression="execution(* com.cn.hcw.service.impl.*.*(..)) and args(param)" />
+            <aop:aspect ref="testAspect">
+                <aop:before method="before" pointcut-ref="pointcut"/>
+                <aop:after method="after" pointcut-ref="pointcut"/>
+                <aop:after-returning method="afterReturningAdvice" pointcut="execution(* com.cn.hcw.service.impl.LoginServiceImpl.userLogin(..))" returning="param" />
+            </aop:aspect>
+    </aop:config>
+
+    <aop:aspectj-autoproxy />
+
+</beans>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.hcw.dao.BookMapper" >
+    <resultMap id="BaseResultMap" type="com.cn.hcw.entity.Book" >
+        <id column="book_id" property="bookId" jdbcType="VARCHAR" />
+        <result column="book_name" property="bookName" jdbcType="VARCHAR" />
+        <result column="book_type" property="bookType" jdbcType="VARCHAR" />
+        <result column="book_pirce" property="bookPirce" jdbcType="DECIMAL" />
+        <result column="book_publish" property="bookPublish" jdbcType="VARCHAR" />
+        <result column="book_publish_time" property="bookPublishTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    book_name,book_type,book_pirce,book_id,book_publish,book_publish_time
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_book
+        where book_id = #{bookId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_book
+    where book_id = #{bookId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.cn.hcw.entity.Book">
+    <selectKey resultType="java.lang.String" order="BEFORE" keyProperty="bookId">
+        SELECT UPPER(UUID()) AS bookId
+    </selectKey>
+    insert into tb_book (book_name,book_type,book_pirce,
+		book_id,book_publish,book_publish_time
+		)
+    values (#{bookName,jdbcType=VARCHAR},#{bookType,jdbcType=VARCHAR},#{bookPirce,jdbcType=DECIMAL},
+		#{bookId,jdbcType=VARCHAR},#{bookPublish,jdbcType=VARCHAR},#{bookPublishTime,jdbcType=TIMESTAMP}
+		)
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.hcw.entity.Book">
+        <selectKey resultType="java.lang.String" order="BEFORE" keyProperty="bookId">
+            SELECT UPPER(UUID()) AS bookId
+        </selectKey>
+    insert into tb_book
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bookName != null" >
+          book_name,
+      </if>
+      <if test="bookType != null" >
+          book_type,
+      </if>
+      <if test="bookPirce != null" >
+          book_pirce,
+      </if>
+      <if test="bookId != null" >
+          book_id,
+      </if>
+      <if test="bookPublish != null" >
+          book_publish,
+      </if>
+      <if test="bookPublishTime != null" >
+          book_publish_time
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bookName != null" >
+          #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookType != null" >
+          #{bookType,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPirce != null" >
+          #{bookPirce,jdbcType=DECIMAL},
+      </if>
+      <if test="bookId != null" >
+          #{bookId,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPublish != null" >
+          #{bookPublish,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPublishTime != null" >
+          #{bookPublishTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.hcw.entity.Book">
+    update tb_book
+    <set>
+    <if test="record.bookName != null">
+        book_name = #{record.bookName,jdbcType=VARCHAR},
+    </if>
+    <if test="record.bookType != null">
+        book_type = #{record.bookType,jdbcType=VARCHAR},
+    </if>
+    <if test="record.bookPirce != null">
+        book_pirce = #{record.bookPirce,jdbcType=DECIMAL},
+    </if>
+    <if test="record.bookPublish != null">
+        book_publish = #{record.bookPublish,jdbcType=VARCHAR},
+    </if>
+    <if test="record.bookPublishTime != null">
+        book_publish_time = #{record.bookPublishTime,jdbcType=TIMESTAMP}
+    </if>
+    </set>
+    where book_id = #{record.bookId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.hcw.entity.Book">
+    update tb_book
+    set book_name = #{record.bookName,jdbcType=VARCHAR},
+		book_type = #{record.bookType,jdbcType=VARCHAR},
+		book_pirce = #{record.bookPirce,jdbcType=DECIMAL},
+		book_publish = #{record.bookPublish,jdbcType=VARCHAR},
+		book_publish_time = #{record.bookPublishTime,jdbcType=TIMESTAMP}
+		
+    where book_id = #{record.bookId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,50 @@
+<%@ page pageEncoding="UTF-8" %>
+
+<div style="display:none;">
+    <c:choose>
+        <c:when test="${dev_mode}">
+        </c:when>
+        <c:otherwise>
+        <script type="text/javascript">
+
+            var _mvq = _mvq || [];
+            var _agt = _agt || [];
+            var sSource = /source/.test(location.href);
+            (function(){
+                //DSP代码
+                 _mvq.push(['$setAccount', 'm-119247-0']);
+                _mvq.push(['$setGeneral', '', '', '', '']);
+                _mvq.push(['$logConversion']);
+                (function() {
+                    var  mvl = document.createElement('script');
+                    mvl.type = 'text/javascript';
+                    mvl.async = true;
+                    mvl.setAttribute('async','async');
+                    mvl.setAttribute('defer','defer');
+                    mvl.src = ('https:' == document.location.protocol ? 'https://static-ssl.mediav.com/mvl.js' : 'http://static.mediav.com/mvl.js');
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mvl, s);
+                })(); 
+
+                //360代码
+                var specialFor360 = document.getElementById('special_code_360');
+                if(!specialFor360 && sSource) {
+                    _agt = _agt || [];
+                    _agt.push(['_atscu', 'AG_678225_XAVA']);
+                    _agt.push(['_atsdomain', 'rmbbox.com']);
+                    (function () {
+                        var ag = document.createElement('script');
+                        ag.type = 'text/javascript';
+                        ag.async = true;
+                        ag.setAttribute('async','async');
+                        ag.setAttribute('defer','defer');
+                        ag.src = (document.location.protocol == 'https:' ? 'https' : 'http') + '://' + 't.agrantsem.com/js/ag.js';
+                        var s = document.getElementsByTagName('script')[0];
+                        s.parentNode.insertBefore(ag, s);
+                    })();
+                }
+            })();
+        </script>
+        </c:otherwise>
+    </c:choose>
+</div>

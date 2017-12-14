@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--基础配置-->
+<generatorConfig>
+
+    <!-- 项目路径(service) -->
+    <projectUrl>/Users/lxl/project/web/rmbbox-service-all</projectUrl>
+    <!-- controller项目路径 -->
+    <controllerProjectUrl>/Users/lxl/project/web/rmbbox-manager-all</controllerProjectUrl>
+    <!-- 是否生成Entity文件存放位置-->
+    <entityUrl>com.rmbbox.entity</entityUrl>
+    <!-- 是否生成Dao文件存放位置-->
+    <daoUrl>com.rmbbox.mapper</daoUrl>
+    <!-- 是否生成Service文件存放位置(impl包与service同级) -->
+    <serviceUrl>com.rmbbox.service.bbt</serviceUrl>
+    <!-- 是否生成Controller文件存放位置 -->
+    <controllerUrl>com.rmbbox.manager.controller.bbt</controllerUrl>
+    <!-- 是否生成SqlXml文件存放位置 -->
+    <sqlXmlUrl>mybatis.mapper</sqlXmlUrl>
+
+    <!-- 是否要分页扩展 -->
+    <paging>true</paging>
+
+    <!-- 是否映射所有表 -->
+    <generatorAllTable>false</generatorAllTable>
+    <!-- 需映射的表(如果上面是false要填写表名) -->
+    <needGeneratorTables>tb_core_test,tb_core_test2</needGeneratorTables>
+
+    <!-- 需要继承的BaseController -->
+    <baseController>com.rmbbox.base.BaseController</baseController>
+    <!-- 需要继承的BaseService -->
+    <baseService></baseService>
+
+    <!-- 是否生成Controller -->
+    <createController>true</createController>
+
+    <!-- 是否生成字段描述(注释) -->
+    <createFieldDescribe>true</createFieldDescribe>
+
+    <!-- 生成的类是否去掉表名前缀 -->
+    <cutTablePrefix>true</cutTablePrefix>
+    <!-- 表名前缀 -->
+    <tablePrefix>tb_</tablePrefix>
+
+    <!-- 是否生成Entity -->
+    <createEntity>true</createEntity>
+    <!-- 是否生成createDao -->
+    <createDao>true</createDao>
+    <!-- 是否生成Service -->
+    <createService>true</createService>
+    <!-- 是否生成ServiceImpl -->
+    <createServiceImpl>true</createServiceImpl>
+    <!-- 是否生成XMLMapper -->
+    <createXMLMapper>true</createXMLMapper>
+
+</generatorConfig>

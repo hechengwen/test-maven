@@ -1,0 +1,23 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<section class="white service-phone">
+    <ul>
+        <li>
+            <img src="//rmbboximage.b0.upaiyun.com/ud/phone.jpg" alt="phone">
+            <p class="bold">客服电话</p>
+            <p class="big">400-0101-016</p>
+            <p class="colora9a9a9">服务时间：8:00-20:00</p>
+        </li>
+        <li>
+            <img src="//rmbboximage.b0.upaiyun.com/ud/men.jpg" alt="men">
+            <p class="bold">在线客服</p>
+            <p>即时在线沟通，为您解决问题</p>
+            <a class="btn-consult" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODE3NjIyN180NjMwNTZfNDAwMDEwMTAxNl8yXw" target="_blank">立即咨询</a>
+        </li>
+        <li>
+            <img src="//rmbboximage.b0.upaiyun.com/ud/wx.jpg" alt="wx" style="width: 112px;height: 112px;">
+            <p class="margin-top">优点智投官方微信</p>
+        </li>
+    </ul>
+</section>

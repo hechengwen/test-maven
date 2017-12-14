@@ -1,0 +1,80 @@
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+<select id="city">
+    <option value="">请选择</option>
+    <option value="bj">北京</option>
+    <option value="tj">天津</option>
+    <option value="sh">上海</option>
+</select>
+
+<select id="area">
+    <option value="">请选择</option>
+</select>
+
+
+<!--<script src="/js/jquery-3.2.1.min.js" />-->
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    $(function () {
+        $("#city").change(function () {
+            var option = $("#city option:selected").val();
+            switch (option) {
+                case 'bj':
+                    $("#area").html("<option>昌平</option>"+"<option>朝阳</option>"+"<option>海淀</option>");
+                    break;
+                case 'tj':
+                    $("#area").html("<option>南开</option>"+"<option>和平</option>"+"<option>静海</option>");
+                    break;
+                case 'sh':
+                    $("#area").html("<option>浦东</option>"+"<option>虹桥</option>"+"<option>松江</option>");
+                    break;
+                case '':
+                    $("#area").html("<option>请选择</option>");
+                    break;
+            }
+        });
+    });
+
+
+</script>
+
+<!--<script>
+    var city = document.getElementById("city");
+    city.onchange = function () {
+        var options = city.getElementsByTagName("option");
+        for (var i = 0;i<options.length;i++){
+            if (options[i].selected){
+                var val = options[i].value;
+                switch (val) {
+                    case 'bj':
+                        var area = document.getElementById("area");
+                        area.innerHTML = "<option>昌平</option>"+"<option>朝阳</option>"+"<option>海淀</option>";
+                        break;
+                    case 'tj':
+                        var area = document.getElementById("area");
+                        area.innerHTML = "<option>南开</option>"+"<option>和平</option>"+"<option>静海</option>";
+                        break;
+                    case 'sh':
+                        var area = document.getElementById("area");
+                        area.innerHTML = "<option>浦东</option>"+"<option>虹桥</option>"+"<option>松江</option>";
+                        break;
+                    case '':
+                        var area = document.getElementById("area");
+                        area.innerHTML = "<option>请选择</option>";
+                        break;
+                }
+
+            }
+        }
+
+    }
+
+</script>-->
+
+<!--<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>-->
+
+</body>
+</html>

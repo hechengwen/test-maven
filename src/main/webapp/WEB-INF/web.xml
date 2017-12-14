@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+  <display-name>Archetype Created Web Application</display-name>
+
+  <!-- application范围内的参数，存放在servletcontext中 -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+      classpath*:application.xml
+      classpath*:applicationContext-*.xml
+    </param-value>
+  </context-param>
+  <!-- 编码过滤器 -->
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <async-supported>true</async-supported>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>TestFilter</filter-name>
+    <filter-class>com.cn.hcw.filter.TestFilter</filter-class>
+    <!-- servlet范围内的参数，只能在servlet的init()方法中取得
+      System.out.println(this.getInitParameter("param1"));
+      System.out.println(getServletContext().getInitParameter("context/param"));
+      第一种参数在servlet里面可以通过getServletContext().getInitParameter("context/param")得到
+      第二种参数只能在servlet的init()方法中通过this.getInitParameter("param1")取得
+    -->
+    <init-param>
+      <param-name>test</param-name>
+      <param-value>hello</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>TestFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
+  <!-- Spring监听器 -->
+  <!--ContextLoaderListener的作用就是启动Web容器时，自动装配ApplicationContext的配置信息。
+      因为它实现了ServletContextListener这个接口，在web.xml配置这个监听器，启动容器时，就会默认执行它实现的方法。-->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <!-- 防止Spring内存溢出监听器 -->
+  <listener>
+    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+  </listener>
+
+  <!-- Spring MVC servlet -->
+  <servlet>
+    <servlet-name>SpringMVC</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring-mvc.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+    <async-supported>true</async-supported>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SpringMVC</servlet-name>
+    <!-- 此处可以可以配置成*.do，对应struts的后缀习惯 -->
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+  <welcome-file>/index.jsp</welcome-file>
+</welcome-file-list>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/WEB-INF/jsp/http404.jsp</location>
+  </error-page>
+</web-app>

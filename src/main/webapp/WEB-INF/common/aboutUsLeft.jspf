@@ -1,0 +1,139 @@
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="ccc" uri="/WEB-INF/tlds/CreditCloudCommon" %>
+<div class="aboutUs-sidebar">
+    <ul class="leftMenu">
+        <li class="item">
+            <!-- <a class="title">关于我们</a> -->
+            <ul class="list-menu" id="ul-list">
+                <li class="list-item" data-page="platformIntro" data-sub-pages="recharge,withdraw">
+                    <a href="/aboutUs/platformIntro" id="win">平台介绍</a>
+                </li>
+
+                <li class="list-item" data-page="honor">
+                    <a href="/aboutUs/honor">平台资质</a>
+                </li>
+                <li class="list-item" data-page="teamIntro">
+                    <a href="/aboutUs/teamIntro">团队介绍</a>
+                </li>
+                <li class="list-item" data-page="companyDynamic" id="company" >
+                    <a href="/company/news/1" id="companyA">活动花絮</a>
+                </li>
+                <li class="list-item" data-page="partners">
+                    <a href="/aboutUs/partners">合作伙伴</a>
+                </li>
+
+                <li class="list-item" data-page="joinAssociation" >
+                    <a href="/aboutUs/joinAssociation">加入协会</a>
+                </li>
+
+                <li class="list-item" data-page="events" >
+                    <a href="/bbt/events">大事记</a>
+                </li>
+                <li class="list-item" data-page="infor"  data-sub-pages="1" id="announcement">
+                    <a href="/articles-PUBLICATION/1" id="announcementA" >资讯公告</a>
+                </li>
+
+               <%-- <li class="list-item" data-page="teamStyle">
+                    <a href="/aboutUs/teamStyle">团队风采</a>
+                </li>--%>
+
+
+
+                <li class="list-item" data-page="contactUs">
+                    <a href="/aboutUs/contactUs">联系我们</a>
+                </li>
+
+                <li class="list-item" data-page="hireYou">
+                    <a class="last" href="/aboutUs/hireYou">招贤纳士</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<script>
+    (function () {
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+        //alert(getQueryString("type"));
+        var type=getQueryString("type");
+        var awin=document.getElementById('win');
+        var announcement=document.getElementById('announcement');
+        var announcementA=document.getElementById('announcementA');
+        if(type==1 || type==2){
+            awin.style.borderLeft='none';
+            announcement.style.borderLeft='3px solid #a2d4ff';
+            announcement.style.color='#004098';
+        }
+
+        var url=window.location.pathname;
+
+        var company='/company/news';
+
+        var companyId=document.getElementById('company');
+        var companyIdA=document.getElementById('companyA');
+        if(url.indexOf(company)>=0){
+            companyId.style.borderLeft='3px solid #a2d4ff';
+            companyIdA.style.color='#004098';
+            announcement.style.borderLeft='3px solid #fff';
+            announcementA.style.color='#252525';
+
+        }
+
+        function menuEvent() {
+            var uri = location.pathname;
+            if (uri.charAt(uri.length - 1) === "/") {
+                /**  trim the last "/" **/
+                uri = uri.substring(0, uri.length - 1);
+            }
+            var lastPath = uri.split('/');
+            lastPath = lastPath[lastPath.length - 1];
+            var currMenu = $('.leftMenu .list-item[data-page=' + lastPath + ']');
+
+            if (currMenu.length > 0) {
+                currMenu.addClass('curr');
+                $('.leftMenu .list-item').removeClass('curr');
+                currMenu.closest('.list-item').addClass('curr');
+            }
+            else{
+                var subPages = $('.list-item[data-sub-pages]');
+                for(var j=0; j<subPages.length; j++){
+                    var subStr = subPages.get(j).getAttribute('data-sub-pages');
+                    if((',' + subStr + ',').indexOf(',' + lastPath + ',')>=0){
+                        currMenu = $(subPages.get(j));
+                        currMenu.addClass('curr');
+                        $('.leftMenu .list-item').removeClass('curr');
+                        currMenu.closest('.list-item').addClass('curr');
+                        break;
+                    }
+                }
+            }
+
+            $('.leftMenu .list-item>a').bind('click', function () {
+                if ($(this).closest('.list-item').hasClass('curr')){
+                    $(this).closest('.list-item').removeClass('curr');
+                    return;
+                }
+
+                $('.leftMenu .list-item').removeClass('curr');
+                $(this).closest('.list-item').addClass('curr');
+            });
+        }
+
+        function check$(){
+            if(typeof(jQuery)=='undefined'){
+                setTimeout(check$,10);
+                return;
+            }
+            menuEvent();
+        }
+
+        check$();
+    })();
+</script>

@@ -1,0 +1,42 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<nav>
+    <ul class="about-nav">
+        <li>
+            <a href="/about/us/Introduce" class="position-absolute"></a>
+            <p class="backg_1 background_1"></p>
+            <span>平台介绍</span>
+        </li>
+        <li>
+            <a href="/about/us/Friends" class="position-absolute"></a>
+            <p class="backg_2 background_2"></p>
+            <span>合作伙伴</span>
+        </li>
+        <li>
+            <a href="/about/us/Redmin" class="position-absolute"></a>
+            <p class="backg_5 background_5"></p>
+            <span>风险提示</span>
+        </li>
+        <li>
+            <a href="/about/us/DisclaimerSm" class="position-absolute"></a>
+            <p class="backg_6 background_6"></p>
+            <span>免责声明</span>
+        </li>
+        <li>
+            <a href="/about/us/PrivacyTk" class="position-absolute"></a>
+            <p class="backg_7 background_7"></p>
+            <span>隐私条款</span>
+        </li>
+        <li>
+            <a href="/about/us/AddUs" class="position-absolute"></a>
+            <p class="backg_3 background_3"></p>
+            <span>加入我们</span>
+        </li>
+        <li>
+            <a href="/about/us/ContactUs" class="position-absolute"></a>
+            <p class="backg_4 background_4"></p>
+            <span>联系我们</span>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,18 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<header class="header2">
+    <div class="container">
+        <a class="pull-left" href="/index">
+            <ul class="flip-icon">
+                <li class="bgimg-all icon-1 "></li>
+                <%--<li class="line"><p class="icon-2"></p></li>--%>
+            </ul>
+        </a>
+
+        <div class="pull-right">
+            <p class="kf"><span class="bgimg-all icon-phone"></span><em>客服热线：</em>400-0101-016（8:00-20:00）</p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</header>

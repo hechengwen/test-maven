@@ -1,0 +1,415 @@
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="ccc" uri="/WEB-INF/tlds/CreditCloudCommon" %>
+<link rel="stylesheet" href="/assets/plugins/layer/skin/layer.css"/>
+<link rel="stylesheet" type="text/css" href="/assets/css/pc/accountMenu.css"/>
+<div class="account-sidebar">
+
+    <div class="top-user">
+        <div class="user-photo-wrap">
+            <a class="message-tips" href="/account/mail">
+                <img src="//rmbboximage.b0.upaiyun.com/ud/mail2.png" alt="">
+                <div class="tips-num msg-num-acc bubble-msg" id="left-tip"></div>
+            </a>
+            <img class="user-photo" id="upload_head"
+                 src="<c:choose>
+                     <c:when test="${not empty SessionUtils.user.avatar}">${SessionUtils.user.avatar}</c:when>
+                     <c:otherwise>
+                        <c:choose>
+                          <c:when test="${SessionUtils.user.sex eq '女'}">/assets/images/female.jpg</c:when>
+                             <c:otherwise>/assets/images/male.jpg</c:otherwise>
+                        </c:choose>
+                     </c:otherwise>
+                  </c:choose>"/>
+        </div>
+        <input type="hidden" id="userId" value="${SessionUtils.user.userId}"/>
+        <div class="welcome" style="margin-bottom:0">
+            <strong>
+                <c:choose>
+                    <c:when test="${SessionUtils.user.userName != null}">
+                        ${SessionUtils.user.welcomeName}
+                    </c:when>
+                    <c:otherwise>
+                        <c:choose>
+                            <c:when test="${SessionUtils.user.loginName != null}">
+                                ${SessionUtils.user.loginName}
+                            </c:when>
+                            <c:otherwise>
+                                ${SessionUtils.user.userMobile}
+                            </c:otherwise>
+                        </c:choose>
+                    </c:otherwise>
+                </c:choose>
+            </strong>
+        </div>
+        <div class="credit clearfix">
+            <ul class="list-inline">
+                <li title="绑定手机" class="space" style="margin-right:20px;">
+                    <a href="/account/changeLoginPwd">
+                        <i class="account-mobile" data-tip="修改手机号"></i>
+                    </a>
+                </li>
+                <%--<li title="实名认证" class="${SessionUtils.user.isAuthIDNumber?"":"non"} space" style="margin-right:20px;">--%>
+
+                    <%--<c:choose>--%>
+                        <%--<c:when test="${SessionUtils.user.isAuthIDNumber == false}">--%>
+                            <%--<a href="/account/bindCard">--%>
+                                <%--<i class="account-user" data-tip="实名认证"></i>--%>
+                            <%--</a>--%>
+                        <%--</c:when>--%>
+                        <%--<c:otherwise>--%>
+                            <%--<a href="/account/safety">--%>
+                                <%--<i class="account-user" data-tip="实名认证"></i>--%>
+                            <%--</a>--%>
+                        <%--</c:otherwise>--%>
+                    <%--</c:choose>--%>
+
+                <%--</li>--%>
+                <li title="绑定银行卡" class="${SessionUtils.user.isBindCard?"":"non"} space" style="margin-right:20px;">
+                    <c:choose>
+                        <c:when test="${SessionUtils.user.isAuthIDNumber == false}">
+                            <a class="toNameCertify" style="cursor: pointer;" href="/account/bindCard">
+                                <i class="account-credit-card" data-tip="绑定银行卡"></i>
+                            </a>
+                        </c:when>
+                        <c:when test="${SessionUtils.user.isBindCard==false}">
+                            <a href="/account/bindCard">
+                                <i class="account-credit-card" data-tip="绑定银行卡"></i>
+                            </a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/account/myBankCard">
+                                <i class="account-credit-card" data-tip="绑定银行卡"></i>
+                            </a>
+                        </c:otherwise>
+                    </c:choose>
+
+                </li>
+                <li title="交易密码" class="${SessionUtils.user.isSetPayPass?"":"non"} space">
+                    <c:choose>
+                        <c:when test="${SessionUtils.user.isAuthIDNumber == false}">
+                            <a class="toNameCertify" style="cursor: pointer;" id="setPw">
+                                <i class="account-lock" data-tip="绑定银行卡"></i>
+                            </a>
+                        </c:when>
+                        <c:when test="${SessionUtils.user.isBindCard==false}">
+                            <a href="/account/bindCard">
+                                <i class="account-lock" data-tip="绑定银行卡"></i>
+                            </a>
+                        </c:when>
+                        <c:when test="${SessionUtils.user.isSetPayPass == false}">
+                            <a href="/account/changePayPwd">
+                                <i class="account-lock" data-tip="设置交易密码"></i>
+                            </a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/account/changePayPwd">
+                                <i class="account-lock" data-tip="设置交易密码"></i>
+                            </a>
+                        </c:otherwise>
+                    </c:choose>
+                </li>
+            </ul>
+        </div>
+
+        <div class="safe-leve clearfix margin-left-30">
+            安全等级：
+            <c:choose>
+                <c:when test="${SessionUtils.user.authenticateNum eq 1}">
+                    <%--<span class="tolower">极低</span>--%>
+                    <img src="//rmbboximage.b0.upaiyun.com/ud/jidi.png" alt="">
+                    <a class="link color21486d" href="/account/bindCard">提升</a>
+                </c:when>
+                <c:when test="${SessionUtils.user.authenticateNum eq 2}">
+                   <%-- <span class="lower">较低</span>--%>
+                    <img src="//rmbboximage.b0.upaiyun.com/ud/jiaodi.png" alt="">
+                    <a class="link color21486d" href="/account/bindCard">提升</a>
+                </c:when>
+                <c:when test="${SessionUtils.user.authenticateNum eq 3}">
+                    <%--<span class="commonly">一般</span>--%>
+                    <img src="//rmbboximage.b0.upaiyun.com/ud/yiban.png" alt="">
+                    <a class="link color21486d" href="/account/changePayPwd">提升</a>
+                </c:when>
+                <c:when test="${SessionUtils.user.authenticateNum eq 4}">
+                    <%--<span class="higher">很高</span>--%>
+                    <img src="//rmbboximage.b0.upaiyun.com/ud/hengao.png" alt="">
+                </c:when>
+            </c:choose>
+
+        </div>
+
+        <div class="testType clearfix padding-bottom-20 margin-left-30">
+            投资属性：<span class="test-img">
+
+            </span><span class="test-type"></span>
+        </div>
+
+
+
+
+        <%--<div class="recharge-balance">--%>
+        <%--<p class="text-center title">可用余额</p>--%>
+        <%--<p class="text-center color00 recharge-value">￥<fmt:formatNumber value="${SessionUtils.user.availableAmount}" type="currency" pattern=",##0.00"/></p>--%>
+
+        <%--<c:choose>--%>
+        <%--<c:when test="${SessionUtils.user.isAuthIDNumber == false}">--%>
+        <%--<a class="btn-fc8f01 toNameCertify" style="cursor: pointer;">充值</a>--%>
+        <%--</c:when>--%>
+        <%--<c:when test="${SessionUtils.user.isBindCard == false}">--%>
+        <%--<a class="btn-fc8f01 toBindCard" style="cursor: pointer;">充值</a>--%>
+        <%--</c:when>--%>
+        <%--<c:otherwise>--%>
+        <%--<a href="/account/recharge" class="btn-fc8f01">充值</a>--%>
+        <%--</c:otherwise>--%>
+        <%--</c:choose>--%>
+        <%--</div>--%>
+    </div>
+
+    <div class="clearfix"></div>
+    <ul class="left-menu">
+        <li class="item curr first-item">
+
+            <div class="block">
+                <a style="cursor: context-menu;">
+                    <i class="account-user"></i>我的账户</a>
+                <ul class="sub-menu">
+                    <li class="sub-item" data-page="index" data-sub-pages="recharge,withdraw"><a href="/account/index">
+                        </i>账户总览</a></li>
+                    <li class="sub-item" data-page="statistics"><a href="/account/investment/statistics">
+                        </i>资产统计</a></li>
+                    <li class="sub-item" data-page="transaction"><a href="/account/transaction">
+                        </i>资金流水</a></li>
+                </ul>
+            </div>
+
+        </li>
+        <li class="item">
+
+            <div class="block">
+                <a style="cursor: context-menu;">
+                    <i class="my-invest"></i>我的投资</a>
+                <ul class="sub-menu">
+                    <%--<li class="sub-item" data-page="investRecords"><a href="/account/investRecords">--%>
+                    <%--</i>投资记录</a></li>--%>
+                   <%-- <li class="sub-item" data-page="scatterRecords"><a href="/account/scatterRecords">
+                        </i>网贷</a></li>--%>
+                    <li class="sub-item" data-page="detail"><a href="/account/current/detail">
+                        </i>智投宝
+                        <c:if test="${SessionUtils.investNumModel.currentInvestNumUnRead > 0}">
+                            (${SessionUtils.investNumModel.currentInvestNumUnRead})
+                        </c:if>
+                    </a></li>
+                    <li class="sub-item" data-page="regularFinancial"><a href="/account/regularFinancial">
+                            优享计划</a></li>
+                    <%-- <li class="sub-item" data-page="regularRecords"><a href="/account/regularRecords">
+                        </i>定期计划</a></li>--%>
+                        <%--  <li class="sub-item" data-page="scatterRecords"><a href="/account/scatterRecords">
+                           </i>散标投资</a></li>--%>
+
+                </ul>
+            </div>
+
+        </li>
+        <c:if test="${SessionUtils.user.isLoan=='true'}">
+            <li class="item">
+                <div class="block">
+                    <a style="cursor: context-menu;">
+                        <i class="my-lend"></i>我的借款</a>
+                    <ul class="sub-menu">
+                        <li class="sub-item" data-page="loan"><a href="/account/loan">
+                            </i>借款记录</a></li>
+                        <li class="sub-item" data-page="waitRepay"><a href="/account/waitRepay">
+                            </i>我的账单</a></li>
+                    </ul>
+                </div>
+            </li>
+        </c:if>
+
+        <li class="item">
+            <div class="block">
+                <a style="cursor: context-menu;">
+                    <i class="gift-manager"></i>我的奖励</a>
+                <ul class="sub-menu">
+                   <%-- <li class="sub-item" data-page="giftcard"><a href="/account/giftcard">
+                        </i>礼券</a></li>--%>
+                    <li class="sub-item" data-page="giftcard"><a href="/account/giftcard">
+                        </i>红包</a></li>
+                    <li class="sub-item" data-page="pageMyRaisingrate"><a href="/account/pageMyRaisingrate">
+                        </i>加息券</a></li>
+                    <li class="sub-item" data-page="trialAmount"><a href="/account/trialAmount">
+                        </i>体验金</a></li>
+
+                </ul>
+            </div>
+
+        </li>
+
+        <li class="item">
+            <div class="block">
+                <a class="invitegiftFriendMenu" style="cursor: pointer;" href="/account/invitegiftFriend">
+                    <i class="invite-manager"></i>邀请好友</a>
+                <ul class="sub-menu">
+                   <%-- <li class="sub-item" data-page="invitegift" data-sub-pages="inviteRecommend,refer-lend"><a
+                            href="/account/invitegift">
+                        </i>我的邀请</a></li>--%>
+                       <%--<li class="sub-item" data-page="invitegiftFriend" data-sub-pages="inviteRecommend,refer-lend"><a--%>
+                               <%--href="/account/invitegiftFriend">--%>
+                           <%--</i>邀请好友</a></li>--%>
+                       <%--<li class="sub-item" data-page="invitegift" data-sub-pages="inviteRecommend,refer-lend"><a--%>
+                               <%--href="/account/invitegift">--%>
+                           <%--</i>邀请记录</a></li>--%>
+
+                </ul>
+            </div>
+
+        </li>
+
+
+        <li class="item  last">
+            <div class="block">
+                <a style="cursor: context-menu;">
+                    <i class="user-manager"></i>账户管理</a>
+                <ul class="sub-menu">
+                    <li class="sub-item" data-page="safety"><a href="/account/safety">
+                        </i>个人中心</a></li>
+                    <li class="sub-item" data-page="myBankCard"><a href="/account/myBankCard">
+                        </i>我的银行卡</a></li>
+                    <li class="sub-item" data-page="mail"><a href="/account/mail">
+                        </i>消息中心 </a></li>
+                    <%--<em class="bubble-msg"></em> 消息提示红点--%>
+                </ul>
+            </div>
+
+        </li>
+
+
+    </ul>
+</div>
+<%--实名绑卡弹窗--%>
+<div class="cover-container hide" id="realName">
+    <div class="real-name">
+        <div class="title">
+            <h3>提示<span class="closeX color888888">×</span></h3>
+        </div>
+        <div class="reminder">
+            <p>您还未绑定银行卡</p>
+            <a href="/account/bindCard">绑定银行卡</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+
+        function menuEvent() {
+            var uri = location.pathname;
+            if (uri.charAt(uri.length - 1) === "/") {
+                /**  trim the last "/" **/
+                uri = uri.substring(0, uri.length - 1);
+            }
+            var lastPath = uri.split('/');
+            lastPath = lastPath[lastPath.length - 1];
+            lastPath = lastPath == 'riskTest'? 'safety':lastPath;
+            var currMenu = $('.left-menu .sub-item[data-page=' + lastPath + ']');
+
+            if (currMenu.length > 0) {
+                currMenu.addClass('curr');
+                $('.left-menu .item').removeClass('curr');
+                currMenu.closest('.item').addClass('curr');
+
+            }
+            else {
+                var subPages = $('.sub-item[data-sub-pages]');
+                for (var j = 0; j < subPages.length; j++) {
+                    var subStr = subPages.get(j).getAttribute('data-sub-pages');
+                    if ((',' + subStr + ',').indexOf(',' + lastPath + ',') >= 0) {
+                        currMenu = $(subPages.get(j));
+                        currMenu.addClass('curr');
+                        $('.left-menu .item').removeClass('curr');
+                        currMenu.closest('.item').addClass('curr');
+                        break;
+                    }
+                }
+            }
+
+            $('.left-menu .item>a').bind('click', function () {
+                if ($(this).closest('.item').hasClass('curr')) {
+                    $(this).closest('.item').removeClass('curr');
+                    return;
+                }
+
+                $('.left-menu .item').removeClass('curr');
+                $(this).closest('.item').addClass('curr');
+            });
+
+
+
+            $('.sub-item').each(function(){
+                if($(this).hasClass('curr')){
+                    $(this).parent('.sub-menu').css('display','block');
+                }
+                if($(this).parents('.item').hasClass('first-item')) {
+                    $('.first-item').children('.sub-menu').css('display','none');
+                }else{
+                    $('.first-item').children('.sub-menu').css('display','block');
+                }
+
+            })
+
+
+
+        }
+
+        function check$() {
+            if (typeof(jQuery) == 'undefined') {
+                setTimeout(check$, 10);
+                return;
+            }
+
+            $('.toNameCertify').on('click', function () {
+//                $('#realName').removeClass('hide');
+            });
+            $('#setPw').on('click',function () {
+                $('#realName').removeClass('hide');
+            })
+            $('#realName .closeX').on('click',function () {
+                $('#realName').addClass('hide');
+            })
+
+            $('.toBindCard').on('click', function () {
+
+                layer.open({
+                    type: 1,
+                    area: ['395px', '100px'], //宽高
+                    content: '<div class="margin-20">\
+                                 <p class="color79 margin-top-20 text-center"><a href="/account/bindCard" style="text-decoration: underline; ">请先绑卡</a></p>\
+                             </div>'
+                });
+
+            });
+
+
+            $('.item a').on('click',function(){
+                if($(this).siblings('.sub-menu').css('display')=='none'){
+                    $(this).siblings('.sub-menu').slideDown(200);
+                }else if( $(this).siblings('.sub-menu').css('display')=='block'){
+                    $(this).siblings('.sub-menu').slideUp(200);
+                }
+            });
+
+
+
+
+            menuEvent();
+
+
+        }
+
+        check$();
+
+
+
+
+    })();
+</script>

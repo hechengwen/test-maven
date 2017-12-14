@@ -1,0 +1,209 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page language="java" import="java.util.Date" %>
+
+<%
+    long currentTime = new java.util.Date().getTime();
+    request.setAttribute("currentTime", currentTime);
+%>
+<header class="common-top">
+
+    <!--Top bar Starts-->
+    <div class="header1">
+        <div class="container">
+
+            <!--Contact Starts-->
+            <div class="pull-left relative">
+                <span class="bgimg-all icon-phone pull-left"></span>
+                <em class="pull-left" style="padding-left: 5px;">客服热线：</em>
+                <a title="咨询热线" class="pull-left" style="color: #82878b">400-0101-016</a>
+                <em class="pull-left">（8:00-20:00）</em>
+
+                <div class="arrow-box-2" id="wbBox">
+                    <div class="arrow">
+                        <div class="z">◆</div>
+                        <div class="y">◆</div>
+                    </div>
+                    <div class="top-img">
+                        <img src="/assets/images/weibo.jpg"/>
+                    </div>
+                    <div class="top-text">
+                        <p>扫一扫</p>
+
+                        <p>关注优点智投</p>
+
+                        <p>官方微博</p>
+                    </div>
+                </div>
+            </div>
+            <!--Contact Ends-->
+
+            <!--Login Starts-->
+            <div class="pull-right top-right relative">
+                <div class="top-choice">
+                    <c:choose>
+                        <c:when test="${SessionUtils.user != null}">
+                            <c:choose>
+                                <c:when test="${SessionUtils.user.userName != null}">
+                                    <a target="_blank" href="/account/index">${SessionUtils.user.welcomeName}，您好！</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:choose>
+                                        <c:when test="${SessionUtils.user.loginName != null}">
+                                            <a target="_blank" href="/account/index">${SessionUtils.user.encryptName}，您好！</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a target="_blank" href="/account/index">${SessionUtils.user.userMobile}，您好！</a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:otherwise>
+                            </c:choose>
+                            <a href="/logout" style="margin-left:0;">退出</a>
+                            <div class="line"></div>
+                            <span class="header-mail-warp" style="display: none">
+                                <a target="_blank" href="/account/mail"><i class="xinfeng "></i>(<em class="msg-num" data-user="${SessionUtils.user}" ></em>)</a>
+                                <div class="line"></div>
+                            </span>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="text">您好，请</span>
+                            <a target="_blank" href="/login" style="margin-left: 0;padding-left: 0">登录</a>
+                            <div class="line"></div>
+                            <a target="_blank" href="/register">会员注册</a>
+                            <div class="line"></div>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <a href="javascript:;" class="margin-right-10 pull-left" id="icon_wechat">关注我们</a>
+                    <div class="arrow-box-1" id="wxBox">
+                        <div class="arrow">
+                            <div class="z">◆</div>
+                            <div class="y">◆</div>
+                        </div>
+                        <div class="top-img">
+                            <img src="//rmbboximage.b0.upaiyun.com/ud/ewm-wechat.png" width="110"/></div>
+                        <div class="top-text">
+                            <p>扫一扫</p>
+                            <p>关注优点智投</p>
+                            <p>微信公众号</p>
+                        </div>
+                    </div>
+                    <%--<div class="line"></div>
+                    <a target="_blank" href="/about/loadApp" class="appDownload" style="margin-right: 0;">APP下载</a>--%>
+                </div>
+
+            </div>
+            <!--Login Ends-->
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!--Top bar Ends-->
+
+
+    <div class="header2" id="head">
+        <div class="container">
+            <a class="pull-left" href="/">
+                <ul class="flip-icon">
+                    <li class="bgimg-all icon-1"></li>
+                </ul>
+            </a>
+            <span class="pull-left">
+                <ul class="flip-icon">
+                    <li class="line"><p class="icon-2"></p></li>
+                </ul>
+            </span>
+            <div class="pull-right">
+                <ul class="list-inline flip-menu">
+                    <li><a href="/" id="toIndex">首页</a></li>
+                    <li><a href="/intelli/detail">智投宝</a></li>
+                    <li><a href="/asset/product/productList">优享计划<span class="loan-num"></span></a></li>
+
+                    <%--<li><a href="/security">安全保障</a></li>--%>
+                    <li><a href="/help/helpCenter">帮助中心</a></li>
+                    <li><a href="/about/us">关于我们</a></li>
+
+                    <li id="myAccount" class="relative">
+                        <a href="/account/index">
+                            <%--<em class="myCount-unread-msg"></em>--%>
+                            <span>我的账户</span>
+                        </a>
+                        <%--<c:choose>--%>
+                            <%--<c:when test="${SessionUtils.user != null}">--%>
+                                <%--<ul>--%>
+                                    <%--<li><a href="/account/regularFinancial">我的投资</a></li>--%>
+                                    <%--<li><a href="/account/giftcard">我的奖励</a></li>--%>
+                                    <%--<li><a href="/account/recharge">我要充值</a></li>--%>
+                                    <%--<li><a href="/account/safety">账户管理</a></li>--%>
+                                        <%--&lt;%&ndash;<li><a href="/account/mail">我的消息<em style="color:#ff0000" class="msg-num1">(<em&ndash;%&gt;--%>
+                                        <%--&lt;%&ndash;class="msg-num" style="color:#ff0000"&ndash;%&gt;--%>
+                                        <%--&lt;%&ndash;data-user="${SessionUtils.user}"></em>)</em></a></li>&ndash;%&gt;--%>
+                                    <%--<li><a href="/logout" class="nav-logout">退出</a></li>--%>
+                                <%--</ul>--%>
+                            <%--</c:when>--%>
+                            <%--<c:otherwise></c:otherwise>--%>
+                        <%--</c:choose>--%>
+                    </li>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+</header>
+
+
+
+<aside class="sider-bar">
+    <div class="f-contact">
+        <ul class="relative" id="sidebar" style="right: 6px;">
+            <li  id="aJump" class="bgimg-all" style="width:90px;height:90px;background: transparent;left:-65px;cursor: pointer">
+                <a class="dong-url"><img width="100%" src=""/></a>
+            </li>
+
+            <li class="bgimg-all">
+                <div class="icon-3">
+                    <div class="list">
+                        <ul class="list1">
+                            <li style="line-height: 23px;padding-top: 5px;">
+                                <a>
+                                    <p>客服热线</p>
+
+                                    <p class="font-18 color-252525">400-0101-016</p>
+                                </a>
+                            </li>
+                            <%--<li><a
+                                    href="http://www.sobot.com/chat/pc/index.html?sysNum=e8682d5a65eb4992a98c61ce536ae773"
+                                    target="_blank"><i class="fa fa-comment"></i>值班客服</a></li>--%>
+                            <li>
+                                <a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODE3NjIyN180NjMwNTZfNDAwMDEwMTAxNl8yXw"
+                                   target="_blank">QQ在线客服</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <%--<li class="bgimg-all">--%>
+                <%--<div class="icon-1">--%>
+                    <%--<div class="list">--%>
+                        <%--<ul class="list2">--%>
+                            <%--<li><a target="_blank"--%>
+                                   <%--href="http://shang.qq.com/wpa/qunwpa?idkey=2cc67436f9c3b032426d246880c6243e7400763c5debf49dadef71424c49d7dd">官方投资1群（可加入）</a></li>--%>
+                            <%--<li><a target="_blank"--%>
+                                   <%--href="http://shang.qq.com/wpa/qunwpa?idkey=30a9e029370dae9199a237718f81f1f0e327f149b07537d04914072502c8bd91">官方投资2群（可加入）</a></li>--%>
+                        <%--</ul>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</li>--%>
+            <li class="bgimg-all">
+                <div class="icon-2">
+                    <div class="list">
+                        <p class="qrcode"></p>
+                    </div>
+                </div>
+            </li>
+            <li class="bgimg-all" id="toTop">
+                <div class="icon-4"></div>
+            </li>
+        </ul>
+    </div>
+</aside>
+

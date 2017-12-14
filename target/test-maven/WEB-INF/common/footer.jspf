@@ -1,0 +1,156 @@
+<%@ page pageEncoding="UTF-8" %>
+
+<div id="footer_all">
+    <!--Foot Starts-->
+    <div class="footer-1">
+        <div class="container">
+            <div>
+                <div class="pull-left m-footer">
+                    <div>
+                        <div class="tit"><img src="//rmbboximage.b0.upaiyun.com/ud/header-logo2x.png" width="176" height="42"/></div>
+                        <div class="">
+                            <p><span>400-0101-016</span><br/>（工作时间：8:00-20:00）
+                            </p>
+                            <%--<p>客服邮箱：<a href="mailto:">bbtkf@rmbbox.com</a></p>--%>
+
+                            <div class="kf-warp">
+                                <a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODE3NjIyN180NjMwNTZfNDAwMDEwMTAxNl8yXw"
+                               target="_blank"><span class="kf"></span>在线客服<b></b></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-left l-footer borderDiv">
+                    <div class="l-footer-div col-md-3">
+                        <p class="tit">关于我们</p>
+                        <ul>
+                            <li><a target="_blank" href="/about/us/Introduce">平台简介</a></li>
+                            <li><a target="_blank" href="/about/us/AddUs">加入我们</a></li>
+                            <li><a target="_blank" href="/about/us/ContactUs">联系我们</a></li>
+                        </ul>
+                    </div>
+                    <div class="l-footer-div col-md-3">
+                        <p class="tit">投资者教育</p>
+                        <ul>
+                            <li><a target="_blank" href="/about/us/Redmin">风险提示</a></li>
+                            <li><a target="_blank" href="/investEdu-FINANCIALKNOWLEDGE/1/8">理财知识</a></li>
+                            <li><a target="_blank" href="/investEdu-POLICIESREGULATIONS/1/8">政策法规</a></li>
+                        </ul>
+                    </div>
+                    <div class="l-footer-div col-md-3">
+                        <p class="tit">法律声明</p>
+                        <ul class="ul1">
+                            <%--<li><a target="_blank" href="/security#link-1">投资安全</a></li>--%>
+                            <li><a target="_blank" href="/about/us/DisclaimerSm">免责声明</a></li>
+                            <li><a target="_blank" href="/about/us/PrivacyTk">隐私条款</a></li>
+                        </ul>
+                    </div>
+                    <div class="l-footer-div col-md-3">
+                        <p class="tit">帮助中心</p>
+                        <ul class="ul1">
+                            <%--<li><a target="_blank" href="/security#link-1">投资安全</a></li>--%>
+                            <li><a target="_blank" href="/help/helpCenter?tabIndex=0">会员注册</a></li>
+                            <li><a target="_blank" href="/help/helpCenter?tabIndex=1">充值提现</a></li>
+                            <li><a target="_blank" href="/help/helpCenter?tabIndex=2">投资回款</a></li>
+                            <li><a target="_blank" href="/help/helpCenter?tabIndex=3">账户安全</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <ul class="pull-left r-footer">
+                    <li>
+                        <p class="text-center officialDownload">微信公众号</p>
+
+                        <div class="wx-2"></div>
+                    </li>
+                    <%--<li>
+                        <p class="text-center appDownload">APP下载</p>
+
+                        <div class="wb-2"></div>
+                    </li>--%>
+                </ul>
+
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <%--<div class="friend-links-wrap">
+        <div class="container">
+            <div class="foot-item">
+                <!-- Heading -->
+                <div class="friend-links">
+                    <ul class="list-inline">
+                        <!-- Link -->
+                        <li>友情链接：</li>
+                        &lt;%&ndash;<li><a href="http://www.xinmaochina.com" target="_blank">鑫茂集团</a></li>&ndash;%&gt;
+                        &lt;%&ndash;<li><a href="http://www.xinmaokeji.com.cn" target="_blank">鑫茂科技</a></li>&ndash;%&gt;
+                        <li><a href="http://www.nifa.org.cn/" target="_blank">中国互联网金融协会</a></li>
+                        <li><a href="http://www.wdzj.com/dangan/bbt/" target="_blank">网贷之家</a></li>
+                        <li><a href="http://rmbbox.p2peye.com/" target="_blank">网贷天眼</a></li>
+                        <li><a href="http://www.cfca.com.cn/" target="_blank" rel="nofollow">中国金融认证中心</a></li>
+                        <li><a href="http://www.bjp2p.com.cn/platforminfo/search" target="_blank"
+                               rel="nofollow">北京网贷协会</a></li>
+                        <li><a href="http://www.yidianzixun.com/home?page=channel&id=m81811" target="_blank"
+                               rel="nofollow">一点资讯</a></li>
+                        <li><a href="http://mp.i.sohu.com/profile?xpt=eG1yeGNhaWZ1QHFxLmNvbQ==" target="_blank"
+                               rel="nofollow">搜狐</a></li>
+                        <li><a href="http://www.toutiao.com/m6218247831/" target="_blank" rel="nofollow">今日头条</a></li>
+                        <li><a href="http://kuaibao.qq.com/s/MEDIANEWSLIST?chlid=5085417" target="_blank"
+                               rel="nofollow">腾讯企鹅平台</a></li>
+                        <li><a href="http://www.p2pxing.com" target="_blank">网贷之星</a></li>
+
+                        &lt;%&ndash;<li class="read-more" style="margin-right: 0;"><a id="readfl" style="padding-left: 25px;cursor: pointer;">更多&nbsp;<span&ndash;%&gt;
+                                &lt;%&ndash;class="more"></span></a></li>&ndash;%&gt;
+
+                        <ul id="hideFriLink"
+                            style="display: none;overflow: hidden;margin-left: 100px; width: 1000px;">
+                            <!-- <li><a href="http://www.rrtsangel.com/" target="_blank">众筹</a></li>
+                            <li><a href="http://www.51qed.com/" target="_blank">企额贷</a></li>
+                            <li><a href="http://www.lvhuadai.com" target="_blank">绿化贷</a></li>
+                            <li><a href="http://www.ezxing.com" target="_blank">P2P理财平台</a></li>
+                            <li><a href="http://www.bjsudai.com" target="_blank">房产抵押贷款</a></li>
+                            <li><a href="http://www.cnaidai.com" target="_blank">信用贷款</a></li>
+                            <li><a href="http://www.fujinli.com" target="_blank">P2P理财</a></li>
+                            <li><a href="http://www.smm.cn/metals/precious" target="_blank">今日金价</a></li>
+                            <li><a href="https://www.zhongrt.com/" target="_blank">理财产品</a></li>
+                            <li><a href="http://www.p2pxing.com" target="_blank">网贷之星</a></li>-->
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>--%>
+    <!--Foot Ends-->
+    <footer id="footer">
+        <!-- Container -->
+        <div class="container">
+                © ${year} udrmb.com &nbsp;&nbsp; All Rights Reserved &nbsp; 北京紫貔网络科技有限公司&nbsp;&nbsp; |&nbsp;&nbsp; 京ICP备17019459号-1
+            <span class="fTips">预期年化收益非实际收益承诺，理财非存款 投资需谨慎</span>
+
+            <div class="clearfix"></div>
+        </div>
+    </footer>
+
+    <div class="friend-links">
+        <ul class="list-inline">
+            <li>友情链接：</li>
+            <li><a href="http://www.xinmaochina.com/" target="_blank">鑫茂集团</a></li>
+            <li><a href="http://www.xmrxcaifu.com/" target="_blank">鑫茂荣信财富</a></li>
+            <li><a href="https://www.rmbbox.com/" target="_blank">邦帮堂</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script type="text/javascript">
+    var __html5 = document.createElement("canvas").getContext ? true : false;
+    if (!__html5) {
+        document.write('<scri' + 'pt src="//cdn.bootcss.com/json2/20150503/json2.min.js" type="text/javascript"></scri' + 'pt>');
+        document.write('<scri' + 'pt src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js" type="text/javascript"></scri' + 'pt>');
+    }
+    else {
+        document.write('<scri' + 'pt src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js?forapp=1" type="text/javascript"></scri' + 'pt>');
+    }
+</script>
+<script src="/assets/js/app.js"></script>
